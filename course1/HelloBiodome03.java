@@ -39,13 +39,18 @@ public class HelloBiodome03 {
 			return 0;
 
 		double guess = num / 2.0;
+		return recursiveSquareRoot(num, guess);
+	}
+
+	public static double recursiveSquareRoot(double num, double guess) { // 반복문을 사용하지 않고 재귀로 구현
 		double epsilon = 0.0001; // 오차범위
 
-		while (calculateAbsoluteValue(guess * guess - num) > epsilon) {
-			guess = (guess + (num / guess)) / 2.0;
+		if (calculateAbsoluteValue(guess * guess - num) <= epsilon) {
+			return guess;
 		}
 		
-		return guess;
+		double newGuess = (guess + (num / guess)) / 2.0;
+		return recursiveSquareRoot(num, newGuess);
 	}
 
 	public static double calculateAbsoluteValue(double num) {
